@@ -14,14 +14,24 @@ This repository contains the source code for the real-time semantic segmentation
 Install the following packages:
 ```Bash
 conda install pytorch torchvision cudatoolkit=11.1 -c pytorch -c conda-forge
-pip install ffmpeg-python
+pip install opencv-python ffmpeg-python
 ```
 Add the parent directory of the repository to PYTHONPATH.
+
+## Models
+| Template  | Dataset | Resolution | mIoU (%) | FPS | Link |
+| :--- | :---: |  :---: |  :---: | :---: | :---: |
+| HyperSeg-L | [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC) | 512x512 | 80.6 (val) | - | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/vocsbd_efficientnet_b3_hyperseg-l.pth) |
+| HyperSeg-M | [CityScapes](https://www.cityscapes-dataset.com/) | 1024x512 | 76.2 (val) | 36.9 | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/cityscapes_efficientnet_b1_hyperseg-m.pth) |
+| HyperSeg-S | [CityScapes](https://www.cityscapes-dataset.com/) | 1536x768 | 78.2 (val) | 16.1 | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/cityscapes_efficientnet_b1_hyperseg-s.pth) |
+| HyperSeg-S | [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid) | 768x576 | 78.4 (test) | 38.0 | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/camvid_efficientnet_b1_hyperseg-s.pth) |
+| HyperSeg-L | [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid) | 1024x768 | 79.1 (test) | 16.6 | - |
+Either download the models under `<project root>/weights` or adjust the `model` variable in the test configuration files.
 
 ## Datasets
 | Dataset  | # Images | Classes | Resolution | Link | 
 | :--- | :---: |  :---: |  :---: | :---: |
-| [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC) | 10,582  | 21 | Up to 500x500  | auto downloaded |
+| [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC) | 10,582  | 21 | up to 500x500  | auto downloaded |
 | [CityScapes](https://www.cityscapes-dataset.com/)  | 5,000  | 19 | 960x720  | [download](https://www.cityscapes-dataset.com/downloads/) |
 | [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid)  | 701 | 12 | 2048x1024  | [download](https://www.kaggle.com/carlolepelaars/camvid#) |
 
