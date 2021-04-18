@@ -26,6 +26,9 @@ Add the parent directory of the repository to PYTHONPATH.
 | HyperSeg-S | [CityScapes](https://www.cityscapes-dataset.com/) | 1536x768 | 78.2 (val) | 16.1 | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/cityscapes_efficientnet_b1_hyperseg-s.pth) |
 | HyperSeg-S | [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid) | 768x576 | 78.4 (test) | 38.0 | [download](https://github.com/YuvalNirkin/hyperseg/releases/download/v1.0/camvid_efficientnet_b1_hyperseg-s.pth) |
 | HyperSeg-L | [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid) | 1024x768 | 79.1 (test) | 16.6 | - |
+
+The models FPS was measured on an NVIDIA GeForce GTX 1080TI GPU.
+
 Either download the models under `<project root>/weights` or adjust the `model` variable in the test configuration files.
 
 ## Datasets
