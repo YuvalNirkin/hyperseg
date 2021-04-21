@@ -35,8 +35,8 @@ Either download the models under `<project root>/weights` or adjust the `model` 
 | Dataset  | # Images | Classes | Resolution | Link | 
 | :--- | :---: |  :---: |  :---: | :---: |
 | [PASCAL VOC](http://host.robots.ox.ac.uk/pascal/VOC) | 10,582  | 21 | up to 500x500  | auto downloaded |
-| [CityScapes](https://www.cityscapes-dataset.com/)  | 5,000  | 19 | 960x720  | [download](https://www.cityscapes-dataset.com/downloads/) |
-| [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid)  | 701 | 12 | 2048x1024  | [download](https://www.kaggle.com/carlolepelaars/camvid#) |
+| [CityScapes](https://www.cityscapes-dataset.com/)  | 5,000  | 19 | 2048x1024  | [download](https://www.cityscapes-dataset.com/downloads/) |
+| [CamVid](http://mi.eng.cam.ac.uk/research/projects/VideoRec/CamVid)  | 701 | 12 | 960x720 | [download](https://www.kaggle.com/carlolepelaars/camvid#) |
 
 Either download the datasets under `<project root>/data` or adjust the `data_dir` variable in the configuration files.
 
