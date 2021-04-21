@@ -61,3 +61,14 @@ For example testing the PASCAL VOC HyperSeg-L model using the available test con
 ```Bash
 python configs/test/vocsbd_efficientnet_b3_hyperseg-l.py
 ```
+
+### Citation
+```
+@inproceedings{nirkin2021hyperseg,
+  title={{HyperSeg}: Patch-wise Hypernetwork for Real-time Semantic Segmentation},
+  author={Nirkin, Yuval and Wolf, Lior and Hassner, Tal},
+  booktitle={IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR)},
+  month={June},
+  year={2021}
+}
+```
