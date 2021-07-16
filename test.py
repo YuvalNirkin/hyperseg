@@ -46,7 +46,7 @@ general.add_argument('-ds', '--display_sources', nargs='+',
                      help='additional display sources')
 general.add_argument('-dwi', '--display_with_input', action='store_true',
                      help='adds the input image to the display')
-general.add_argument('-da', '--display_alpha', type=float, metavar='F',
+general.add_argument('-da', '--display_alpha', type=float, metavar='F', default=0.75,
                      help='controls the opacity of the predictions and ground truth in the display image')
 general.add_argument('-dbi', '--display_background_index', default=0, type=int, metavar='N',
                      help='background index to ignore in label color display')
@@ -243,6 +243,10 @@ def display_subset(dataset, indices, model, device, batch_size=16, scale=0.5, al
 
         # Execute model
         pred = model(input)
+
+        # Make sure the prediction and target are of the same resolution
+        if pred.shape[2:] != target.shape[1:]:
+            target = F.interpolate(target.unsqueeze(1).float(), size=pred.shape[-2:], mode='nearest').long().squeeze(1)
 
         # Append
         inputs.append(input[0].cpu() if isinstance(input, (list, tuple)) else input.cpu())
