@@ -52,7 +52,7 @@ python configs/train/cityscapes_efficientnet_b1_hyperseg-m.py
 For example testing the HyperSeg-M model on Cityscapes validation set:
 ```Bash
 python test.py 'checkpoints/cityscapes/cityscapes_efficientnet_b1_hyperseg-m' \
--td "hyper_seg.datasets.cityscapes.CityscapesDataset('data/cityscapes',split='val',mode='fine')" \
+-td "hyperseg.datasets.cityscapes.CityscapesDataset('data/cityscapes',split='val',mode='fine')" \
 -it "seg_transforms.LargerEdgeResize([512,1024])"
 ```
 
