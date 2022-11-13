@@ -13,10 +13,13 @@ This repository contains the source code for the real-time semantic segmentation
 ## Installation
 Install the following packages:
 ```Bash
-conda install pytorch torchvision cudatoolkit=11.1 -c pytorch -c conda-forge
-pip install opencv-python ffmpeg-python
+git clone https://github.com/YuvalNirkin/hyperseg
+cd hyperseg
+conda env create -f hyperseg_env.yml
+conda activate hyperseg
+pip install -e .    # Alternatively add the root directory of the repository to PYTHONPATH.
 ```
-Add the parent directory of the repository to PYTHONPATH.
+Next, download the models and datasets:
 
 ## Models
 | Template  | Dataset | Resolution | mIoU (%) | FPS | Link |

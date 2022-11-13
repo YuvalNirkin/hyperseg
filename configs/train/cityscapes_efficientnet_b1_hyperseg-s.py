@@ -12,7 +12,7 @@ from hyperseg.train import main
 
 
 if __name__ == '__main__':
-    project_dir = os.path.dirname(inspect.getabsfile(main))
+    project_dir = os.path.dirname(os.path.dirname(inspect.getabsfile(main)))
     exp_name = os.path.splitext(os.path.basename(__file__))[0]
     exp_dir = os.path.join('checkpoints/cityscapes', exp_name)
     data_dir = 'data/cityscapes'    # Download from: https://www.cityscapes-dataset.com

@@ -7,8 +7,6 @@ from tqdm import tqdm
 from torchvision.datasets import VisionDataset
 from torchvision.datasets.utils import extract_archive, verify_str_arg, iterable_to_str
 
-# import torchvision.datasets.cityscapes as cityscapes
-
 
 CityscapesClass = namedtuple('CityscapesClass', ['name', 'id', 'train_id', 'category', 'category_id',
                                                  'has_instances', 'ignore_in_eval', 'color'])

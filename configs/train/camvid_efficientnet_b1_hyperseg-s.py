@@ -12,7 +12,7 @@ from hyperseg.train import main
 
 
 if __name__ == '__main__':
-    project_dir = os.path.dirname(inspect.getabsfile(main))
+    project_dir = os.path.dirname(os.path.dirname(inspect.getabsfile(main)))
     exp_name = os.path.splitext(os.path.basename(__file__))[0]
     exp_dir = os.path.join('checkpoints/camvid', exp_name)
     data_dir = 'data/camvid'
@@ -24,7 +24,7 @@ if __name__ == '__main__':
     tensor_transforms = [ToTensor(), Normalize(mean=[0.485, 0.456, 0.406], std=[0.229, 0.224, 0.225])]
     epochs = 120
     train_iterations = 2000
-    batch_size = 16
+    batch_size = 2
     workers = 16
     pretrained = True
     optimizer = partial(optim.Adam, lr=1e-3, betas=(0.5, 0.999))

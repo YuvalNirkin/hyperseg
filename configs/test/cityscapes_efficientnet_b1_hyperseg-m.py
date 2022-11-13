@@ -7,7 +7,7 @@ from hyperseg.test import main
 
 
 if __name__ == '__main__':
-    project_dir = os.path.dirname(inspect.getabsfile(main))
+    project_dir = os.path.dirname(os.path.dirname(inspect.getabsfile(main)))
     exp_name = os.path.splitext(os.path.basename(__file__))[0]  # Make sure the config and model have the same base name
     exp_dir = os.path.join('tests', exp_name)
     model = os.path.join('weights', exp_name + '.pth')
