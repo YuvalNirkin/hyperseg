@@ -1,5 +1,4 @@
 import random
-from enum import Enum
 from PIL import Image, ImageFilter
 from collections.abc import Sequence, Iterable
 from matplotlib import pyplot as plt
@@ -8,35 +7,9 @@ import cv2
 import torch
 import torch.nn as nn
 import torchvision.transforms.functional as F
+from torchvision.transforms.functional import InterpolationMode
 from torch.nn.functional import pad, interpolate
 import torchvision.transforms as transforms
-# from torchvision.transforms.transforms import _pil_interpolation_to_str
-
-
-# Borrowed from: https://github.com/pytorch/vision/blob/v0.9.1/torchvision/transforms/functional.py
-class InterpolationMode(Enum):
-    """Interpolation modes
-    """
-    NEAREST = "nearest"
-    BILINEAR = "bilinear"
-    BICUBIC = "bicubic"
-    # For PIL compatibility
-    BOX = "box"
-    HAMMING = "hamming"
-    LANCZOS = "lanczos"
-
-
-# Borrowed from: https://github.com/pytorch/vision/blob/v0.9.1/torchvision/transforms/functional.py
-def _interpolation_modes_from_int(i: int) -> InterpolationMode:
-    inverse_modes_mapping = {
-        0: InterpolationMode.NEAREST,
-        2: InterpolationMode.BILINEAR,
-        3: InterpolationMode.BICUBIC,
-        4: InterpolationMode.BOX,
-        5: InterpolationMode.HAMMING,
-        1: InterpolationMode.LANCZOS,
-    }
-    return inverse_modes_mapping[i]
 
 
 def call_recursive(f, x):
@@ -141,7 +114,7 @@ class Normalize(transforms.Normalize):
         return F.normalize(x, self.mean, self.std, self.inplace)
 
 
-def larger_edge_resize(img: Image, size, interpolation=Image.BICUBIC):
+def larger_edge_resize(img: Image, size, interpolation=InterpolationMode.BICUBIC):
     """ Resize the given image to the target size. If size is a single number, the larger edge will be resized
     to that scale maintaining the image's aspect ratio.
 
@@ -186,7 +159,7 @@ class LargerEdgeResize(SegTransform, transforms.Resize):
             ``PIL.Image.BICUBIC``
     """
 
-    def __init__(self, size, interpolation=Image.BICUBIC):
+    def __init__(self, size, interpolation=InterpolationMode.BICUBIC):
         super(LargerEdgeResize, self).__init__(size, interpolation)
 
     def __call__(self, img, lbl):
@@ -197,13 +170,12 @@ class LargerEdgeResize(SegTransform, transforms.Resize):
             PIL Image: Rescaled image.
         """
         img = larger_edge_resize(img, self.size, self.interpolation)
-        lbl = larger_edge_resize(lbl, self.size, Image.NEAREST)
+        lbl = larger_edge_resize(lbl, self.size, InterpolationMode.NEAREST)
 
         return img, lbl
 
     def __repr__(self):
-        interpolate_str = _interpolation_modes_from_int[self.interpolation]
-        return self.__class__.__name__ + '(size={0}, interpolation={1})'.format(self.size, interpolate_str)
+        return self.__class__.__name__ + '(size={0}, interpolation={1})'.format(self.size, self.interpolation.name)
 
 
 class ConstantPad(SegTransform, transforms.Pad):
@@ -250,7 +222,7 @@ class ConstantPad(SegTransform, transforms.Pad):
 
 
 class RandomResize(SegTransform):
-    def __init__(self, p=0.5, scale_range=None, scale_values=None, interpolation=Image.BICUBIC):
+    def __init__(self, p=0.5, scale_range=None, scale_values=None, interpolation=F.InterpolationMode.BICUBIC):
         assert (scale_range is None) ^ (scale_values is None)
         self.p = p
         self.scale_range = scale_range
@@ -267,7 +239,9 @@ class RandomResize(SegTransform):
 
         size = tuple(np.round(np.array(img.size[::-1]) * scale).astype(int))
         img = F.resize(img, size, self.interpolation)
-        lbl = F.resize(lbl, size, Image.NEAREST)
+        lbl = F.resize(lbl, size, InterpolationMode.NEAREST)
+
+        # lbl = F.resize(lbl, size, Image.NEAREST)
 
         return img, lbl
 

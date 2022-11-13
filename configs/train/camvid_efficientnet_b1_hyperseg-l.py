@@ -12,7 +12,7 @@ from hyperseg.train import main
 
 
 if __name__ == '__main__':
-    project_dir = os.path.dirname(inspect.getabsfile(main))
+    project_dir = os.path.dirname(os.path.dirname(inspect.getabsfile(main)))
     exp_name = os.path.splitext(os.path.basename(__file__))[0]
     exp_dir = os.path.join('checkpoints/camvid', exp_name)
     data_dir = os.path.join(project_dir, 'data/camvid')  # Download from: https://www.kaggle.com/carlolepelaars/camvid#

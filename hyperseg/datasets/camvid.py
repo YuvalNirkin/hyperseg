@@ -2,7 +2,6 @@ from __future__ import print_function
 
 import os
 import torch
-# import torch.utils.data as data
 from torchvision.datasets.folder import is_image_file, default_loader
 from torchvision.datasets.vision import VisionDataset
 import numpy as np
